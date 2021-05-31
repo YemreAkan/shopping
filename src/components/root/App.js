@@ -6,9 +6,8 @@ import Dashboard from "./Dashboard";
 function App() {
   return (
     <Container>
-      <Navi/>
-        <Dashboard/>
-      
+      <Navi />
+      <Dashboard />
     </Container>
   );
 }
