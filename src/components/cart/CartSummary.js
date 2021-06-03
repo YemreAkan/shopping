@@ -28,7 +28,7 @@ class CartSummary extends Component {
           {this.props.cart.map((cartItem) => (
             <DropdownItem key={cartItem.product.id}>
               {cartItem.product.productName}
-              <Badge color="success">{cartItem.quantity}</Badge>
+              -{cartItem.quantity}
             </DropdownItem>
           ))}
         </DropdownMenu>
