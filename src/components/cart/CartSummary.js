@@ -7,12 +7,13 @@ import {
   NavItem,
   NavLink,
   Badge,
-  Button
-} from 'reactstrap';
+  Button,
+} from "reactstrap";
 import { connect } from "react-redux";
 import * as cartActions from "../../redux/actions/cartActions";
 import { bindActionCreators } from "redux";
 import alertify from "alertifyjs";
+import { Link } from "react-router-dom";
 
 class CartSummary extends Component {
   renderToEmpty() {
@@ -25,7 +26,7 @@ class CartSummary extends Component {
 
   removeFromCartFunc = (product) => {
     this.props.actions.removeFromCart(product);
-    alertify.notify(product.productName + " sepetten silindi..")
+    alertify.notify(product.productName + " sepetten silindi..");
   };
   renderSummary() {
     return (
@@ -36,13 +37,20 @@ class CartSummary extends Component {
         <DropdownMenu right key="id">
           {this.props.cart.map((cartItem) => (
             <DropdownItem key={cartItem.product.id}>
-               
-                <Button color="danger" onClick={()=>this.removeFromCartFunc(cartItem.product)}>Sil</Button>
-        
+              <Button
+                color="danger"
+                onClick={() => this.removeFromCartFunc(cartItem.product)}
+              >
+                Sil
+              </Button>
+
               {cartItem.product.productName}
-             <Badge color="info">{cartItem.quantity}</Badge>
+              <Badge color="info">{cartItem.quantity}</Badge>
             </DropdownItem>
           ))}
+          <DropdownItem>
+            <Link to="/cart">Sepete Git</Link>
+          </DropdownItem>
         </DropdownMenu>
       </UncontrolledDropdown>
     );
@@ -61,7 +69,7 @@ class CartSummary extends Component {
 function mapDispatchToProps(dispatch) {
   return {
     actions: {
-      removeFromCart: bindActionCreators(cartActions.removeFromCart, dispatch)
+      removeFromCart: bindActionCreators(cartActions.removeFromCart, dispatch),
     },
   };
 }
